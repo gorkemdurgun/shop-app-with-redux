@@ -4,18 +4,18 @@ import {IProduct} from '../types/ProductTypes';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import color from '../constants/color';
 
-function ProductCard({product, onPress}: IProduct) {
+function BasketCard({product, onPress}: IProduct) {
   return (
     <View style={styles.card}>
-      <View style={styles.infoView}>
+      <View style={styles.leftView}>
+        <Image style={styles.image} source={{uri: product.image}} />
         <Text>{product.title}</Text>
+      </View>
+      <View style={styles.rightView}>
         <TouchableOpacity style={styles.button} onPress={onPress}>
           <Text>{product.price}$</Text>
-          <Icon name="shopping-basket" size={24} color={color.primaryDark} />
+          <Icon name="minus" size={24} color={color.redColor} />
         </TouchableOpacity>
-      </View>
-      <View style={styles.imageView}>
-        <Image style={styles.image} source={{uri: product.image}} />
       </View>
     </View>
   );
@@ -26,32 +26,30 @@ const styles = StyleSheet.create({
     backgroundColor: color.backgroundLight,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 150,
+    height: 200,
     margin: 10,
     padding: 20,
     borderRadius: 20,
   },
-  infoView: {
-    flex: 2,
+  leftView: {
+    flex: 4,
     justifyContent: 'space-between',
   },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: color.primaryLight,
-    padding: 10,
-    borderRadius: 10,
-  },
-  imageView: {
+  rightView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
   },
   image: {
     width: '80%',
     height: '80%',
   },
+  button: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: color.backgroundFaded,
+    padding: 10,
+    borderRadius: 10,
+  },
 });
 
-export default ProductCard;
+export default BasketCard;
