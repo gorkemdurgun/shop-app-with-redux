@@ -1,4 +1,10 @@
-import {ADD_TO_BASKET, GET_PRODUCT_LIST, GET_PRODUCT_REQUEST} from './actions';
+import {
+  ADD_TO_BASKET,
+  GET_PRODUCT_LIST,
+  GET_PRODUCT_REQUEST,
+  REMOVE_FROM_BASKET,
+} from './actions';
+import {IProduct} from '../types/ProductTypes';
 
 const initialState = {
   products: [],
@@ -12,9 +18,13 @@ export function marketReducer(state: any = initialState, action: any) {
     case GET_PRODUCT_LIST:
       return {...state, products: action.payload};
     case ADD_TO_BASKET:
-      console.log(action.payload);
-
       return {...state, basket: [...state.basket, action.payload]};
+    case REMOVE_FROM_BASKET:
+      const {id} = action.payload;
+      return {
+        ...state,
+        basket: state.basket.filter((item: any) => item.id !== id),
+      };
     default:
       return {...state};
   }
