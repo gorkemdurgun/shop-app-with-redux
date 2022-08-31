@@ -14,10 +14,10 @@ const ProductList = () => {
 
   const {products, loading} = useSelector((state: any) => state.marketReducer);
 
-  return (
-    loading
-    ? <Loading/>
-    :<FlatList
+  return loading ? (
+    <Loading />
+  ) : (
+    <FlatList
       data={products}
       renderItem={({item}) => (
         <ProductCard

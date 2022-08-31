@@ -8,8 +8,13 @@ import {useSelector} from 'react-redux';
 import color from './constants/color';
 import Basket from './src/Basket';
 
+export type RootStackParamList = {
+  Shop: undefined;
+  Basket: undefined;
+};
+
 const Router = () => {
-  const Tab = createBottomTabNavigator();
+  const Tab = createBottomTabNavigator<RootStackParamList>();
 
   const {basket} = useSelector((state: any) => state.marketReducer);
 
