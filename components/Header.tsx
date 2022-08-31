@@ -3,9 +3,9 @@ import React from 'react';
 import color from '../constants/color';
 import {useSelector} from 'react-redux';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../Router';
+import {TabParamList } from '../Router';
 
-type HeaderNavigationProp = NavigationProp<RootStackParamList, 'Shop'>;
+type HeaderNavigationProp = NavigationProp<TabParamList , 'Shop'>;
 
 const Header = () => {
   const navigation = useNavigation<HeaderNavigationProp>();
