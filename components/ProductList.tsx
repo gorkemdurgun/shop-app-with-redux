@@ -1,8 +1,9 @@
-import {FlatList} from 'react-native';
+import {ActivityIndicator, FlatList} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToBasket, getProductRequest} from '../redux/actions';
 import ProductCard from './ProductCard';
+import Loading from './Loading';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -11,10 +12,12 @@ const ProductList = () => {
     dispatch(getProductRequest());
   }, []);
 
-  const {products} = useSelector((state: any) => state.marketReducer);
+  const {products, loading} = useSelector((state: any) => state.marketReducer);
 
   return (
-    <FlatList
+    loading
+    ? <Loading/>
+    :<FlatList
       data={products}
       renderItem={({item}) => (
         <ProductCard

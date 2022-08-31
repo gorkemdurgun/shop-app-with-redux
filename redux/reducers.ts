@@ -4,19 +4,19 @@ import {
   GET_PRODUCT_REQUEST,
   REMOVE_FROM_BASKET,
 } from './actions';
-import {IProduct} from '../types/ProductTypes';
 
 const initialState = {
   products: [],
   basket: [],
+  loading: false,
 };
 
 export function marketReducer(state: any = initialState, action: any) {
   switch (action.type) {
     case GET_PRODUCT_REQUEST:
-      return {...state};
+      return {...state, loading: true};
     case GET_PRODUCT_LIST:
-      return {...state, products: action.payload};
+      return {...state, products: action.payload, loading: false};
     case ADD_TO_BASKET:
       return {...state, basket: [...state.basket, action.payload]};
     case REMOVE_FROM_BASKET:
